@@ -9,7 +9,16 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicButtonIcon from '@mui/icons-material/Send';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import SendIcon from '@mui/icons-material/FormatUnderlined';
+import React, { useState } from 'react';
 const MuiButton = () => {
+  const [formats, setFormats] = useState<string | null>(null);
+  const handleFormatChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    updateFormats: string | null
+  ) => {
+    console.log(updateFormats);
+    setFormats(updateFormats);
+  };
   return (
     <div>
       <Stack spacing={2}>
@@ -65,7 +74,11 @@ const MuiButton = () => {
           </ButtonGroup>
         </Stack>
         <Stack direction='row'>
-          <ToggleButtonGroup value='bold' aria-label='text formatting'>
+          <ToggleButtonGroup
+            aria-label='text formatting'
+            value={formats}
+            onChange={handleFormatChange}
+          >
             <ToggleButton value='bold' aria-label='bold'>
               <FormatBoldIcon />
             </ToggleButton>
